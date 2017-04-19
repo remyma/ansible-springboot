@@ -6,7 +6,8 @@ Deploy spring boot applications as linux services.
 ## Requirements
 
 Your spring boot application should package as a fully executable jar as explained here :
-[https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html#deployment-script-customization-conf-file]
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html#deployment-script-customization-conf-file
 
 ## Role Variables
 
