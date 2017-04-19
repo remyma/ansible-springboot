@@ -1,0 +1,21 @@
+---
+- name: "Check if use systemd"
+  set_fact: use_system_d={{(ansible_distribution == 'Debian' and ansible_distribution_version | version_compare('8', '>=')) or (ansible_distribution in ['RedHat','CentOS'] and ansible_distribution_version | version_compare('7', '>=')) or (ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('15', '>=')) }}
+
+- name: "Ensure systemd system directory is present (for Ubuntu)"
+  file:
+    path: "{{ sysd_user_services_folder }}"
+    state: directory
+    owner: root
+    group: root
+
+- name: "Create systemd service file"
+  template:
+    src: app.service.j2
+    dest: "{{ sysd_script }}"
+    mode: 0644
+    owner: "{{ springboot_user }}"
+    group: "{{ springboot_group }}"
+  when: use_system_d
+  notify:
+    - "Restart application"

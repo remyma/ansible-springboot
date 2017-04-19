@@ -1,0 +1,16 @@
+---
+# Mandatory variable : path to springboot jar to deploy
+springboot_src:
+
+# Mandatory variable : spring boot application name
+springboot_application_name:
+
+# Application target when deployed
+springboot_target: "/opt/{{ springboot_application_name }}.jar"
+
+# linux user to start the service
+springboot_user: springboot
+
+# linux group to start the service
+springboot_group: springboot
+

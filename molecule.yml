@@ -1,0 +1,21 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+docker:
+  containers:
+    - name: ansible-springboot
+      image: ubuntu
+      image_version: latest
+      privileged: True
+      command: '/sbin/init'
+      ansible_groups:
+        - group1
+ansible:
+  group_vars:
+    group1:
+      springboot_application_name: spring-boot-sample
+      springboot_src: tests/spring-boot-sample.jar
+verifier:
+  name: testinfra

@@ -1,0 +1,44 @@
+---
+- name: "Check for required inventory springboot_application_name variable"
+  fail:
+    msg: springboot_application_name variable is required and should be defined in you inventory
+  when: not springboot_application_name or springboot_application_name == ''
+
+- name: "Check for required inventory springboot_application_name variable"
+  fail:
+    msg: springboot_src variable is required and should be defined in you inventory
+  when: not springboot_src or springboot_src == ''
+
+- name: "Create group for springboot app"
+  group:
+    name: "{{ springboot_group }}"
+    state: present
+
+- name: "Create user for springboot app"
+  user:
+    name: "{{ springboot_user }}"
+    group: "{{ springboot_group }}"
+    state: present
+
+#- name: Install prerequisites
+#  apt:
+#    name: python-lxml
+#    state: present
+
+#- name: Install from maven repository
+#  maven_artifact:
+#    group_id: com.oxit.flow.eas
+#    artifact_id: eas-integration-services
+#    version: 1.0.0-SNAPSHOT
+#    dest: /opt/eas-integration-services.jar
+
+
+- name: "Copy jar application"
+  copy:
+    src: "{{ springboot_src }}"
+    dest: "{{ springboot_target }}"
+    owner: "{{ springboot_user }}"
+    group: "{{ springboot_group }}"
+
+- name: Install as service
+  include: service.yml

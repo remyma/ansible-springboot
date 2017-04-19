@@ -1,0 +1,3 @@
+---
+sysd_user_services_folder: /usr/lib/systemd/system
+sysd_script: "{{ sysd_user_services_folder }}/{{ springboot_application_name }}.service"
