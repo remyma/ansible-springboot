@@ -9,6 +9,12 @@
     msg: springboot_src variable is required and should be defined in you inventory
   when: not springboot_src or springboot_src == ''
 
+- name: os-specific vars
+  include_vars: "{{ansible_os_family}}.yml"
+
+- name: "Install java"
+  include: java.yml
+
 - name: "Create group for springboot app"
   group:
     name: "{{ springboot_group }}"
@@ -20,25 +26,13 @@
     group: "{{ springboot_group }}"
     state: present
 
-#- name: Install prerequisites
-#  apt:
-#    name: python-lxml
-#    state: present
-
-#- name: Install from maven repository
-#  maven_artifact:
-#    group_id: com.oxit.flow.eas
-#    artifact_id: eas-integration-services
-#    version: 1.0.0-SNAPSHOT
-#    dest: /opt/eas-integration-services.jar
-
-
 - name: "Copy jar application"
   copy:
     src: "{{ springboot_src }}"
     dest: "{{ springboot_target }}"
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
+    mode: "u+x"
 
 - name: Install as service
   include: service.yml

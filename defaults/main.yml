@@ -13,4 +13,3 @@ springboot_user: springboot
 
 # linux group to start the service
 springboot_group: springboot
-
