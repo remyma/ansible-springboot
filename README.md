@@ -1,7 +1,12 @@
 # Ansible Spring boot
 [![Build Status](https://travis-ci.org/remyma/ansible-springboot.svg?branch=master)](https://travis-ci.org/remyma/ansible-springboot)
 
-Deploy spring boot applications.
+Deploy spring boot applications as linux services.
+
+## Requirements
+
+Your spring boot application should package as a fully executable jar as explained here :
+[https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html#deployment-script-customization-conf-file]
 
 ## Role Variables
 
