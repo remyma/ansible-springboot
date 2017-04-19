@@ -5,7 +5,14 @@ driver:
   name: docker
 docker:
   containers:
-    - name: ansible-springboot
+    - name: ansible-springboot-centos
+      image: centos
+      image_version: latest
+      privileged: True
+      command: '/sbin/init'
+      ansible_groups:
+        - group1
+    - name: ansible-springboot-ubuntu
       image: ubuntu
       image_version: latest
       privileged: True
