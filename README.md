@@ -30,8 +30,6 @@ Minimal playbook :
       vars:
         springboot_application_name: spring-boot-sample
         springboot_src: tests/spring-boot-sample.jar
-        springboot_propertyfile_template: tests/spring-boot-sample.yml
-        springboot_configuration_template: tests/spring-boot-sample.conf
       roles:
         - role: ansible-springboot
   
