@@ -4,7 +4,7 @@ After=syslog.target
 
 [Service]
 User={{ springboot_user }}
-ExecStart={{ springboot_target }}
+ExecStart="{{ springboot_deploy_folder }}/{{ springboot_application_name }}.jar"
 SuccessExitStatus=143
 
 [Install]

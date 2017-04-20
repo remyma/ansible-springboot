@@ -22,7 +22,10 @@ docker:
 ansible:
   group_vars:
     group1:
+      log_folder: /var/log
       springboot_application_name: spring-boot-sample
       springboot_src: tests/spring-boot-sample.jar
+      springboot_propertyfile_template: tests/application.yml
+      springboot_configuration_template: tests/spring-boot-sample.conf
 verifier:
   name: testinfra

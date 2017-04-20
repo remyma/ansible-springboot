@@ -15,17 +15,34 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-instal
 | ------------ | ------------- | -------------- |
 | springboot_src |  | Mandatory. Path of the springboot jar to deploy |
 | springboot_application_name |  | Mandatory. Spring application name. Use to name jar to be deployed, systemd service, ... |
-| springboot_target | /opt/{{ springboot_application_name }}.jar | Target path for the jar to be deployed |
+| springboot_propertyfile_template | | Optional. Path towards a template to manage your app properties (eg : application.properties, application.yml).  |
+| springboot_configuration_template | | Optional. Path towards a template to manage your app config (see : https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html#deployment-script-customization-when-it-runs).  |
+| springboot_deploy_folder | /opt/{{ springboot_application_name }} | Folder where application jar is deployed |
 | springboot_user | springboot | Linux user to run spring boot application |
 | springboot_group | springboot | Linux group to run spring boot application |
 
 
 ## Example Playbook
 
+Minimal playbook :
+
     - hosts: all
       vars:
         springboot_application_name: spring-boot-sample
         springboot_src: tests/spring-boot-sample.jar
+        springboot_propertyfile_template: tests/spring-boot-sample.yml
+        springboot_configuration_template: tests/spring-boot-sample.conf
+      roles:
+        - role: ansible-springboot
+  
+If you want to deploy also configuration and/or properties for you application :    
+    
+    - hosts: all
+      vars:
+        springboot_application_name: spring-boot-sample
+        springboot_src: spring-boot-sample.jar
+        springboot_propertyfile_template: /path/to/your/template/application.yml
+        springboot_configuration_template: /path/to/your/template/spring-boot-sample.conf
       roles:
         - role: ansible-springboot
 

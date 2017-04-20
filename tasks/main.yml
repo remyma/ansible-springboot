@@ -26,13 +26,36 @@
     group: "{{ springboot_group }}"
     state: present
 
+- name: "Create deploy folder if not exists"
+  file:
+    path: "{{ springboot_deploy_folder }}"
+    state: directory
+    owner: "{{ springboot_user }}"
+    group: "{{ springboot_group }}"
+
 - name: "Copy jar application"
   copy:
     src: "{{ springboot_src }}"
-    dest: "{{ springboot_target }}"
+    dest: "{{ springboot_deploy_folder }}/{{ springboot_application_name }}.jar"
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
     mode: "u+x"
+
+- name: "Deploy app properties"
+  template:
+    src: "{{ springboot_propertyfile_template }}"
+    dest: "{{ springboot_deploy_folder }}"
+    owner: "{{ springboot_user }}"
+    group: "{{ springboot_group }}"
+  when: springboot_propertyfile_template and springboot_propertyfile_template != ''
+
+- name: "Deploy app config"
+  template:
+    src: "{{ springboot_configuration_template }}"
+    dest: "{{ springboot_deploy_folder }}"
+    owner: "{{ springboot_user }}"
+    group: "{{ springboot_group }}"
+  when: springboot_configuration_template and springboot_configuration_template != ''
 
 - name: Install as service
   include: service.yml
