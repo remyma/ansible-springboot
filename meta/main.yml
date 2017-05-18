@@ -11,14 +11,13 @@ galaxy_info:
     - 7
   - name: Debian
     versions:
-    - latest
+    - all
   - name: Ubuntu
     versions:
-    - latest
+    - all
 
   galaxy_tags:
     - spring
-    - spring-boot
     - springboot
 
 dependencies: []
