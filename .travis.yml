@@ -11,3 +11,5 @@ install:
   - pip install docker
 script:
   - molecule test
+notifications:
+    webhooks: https://galaxy.ansible.com/api/v1/notifications/
