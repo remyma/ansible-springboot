@@ -4,10 +4,10 @@
     msg: springboot_application_name variable is required and should be defined in you inventory
   when: not springboot_application_name or springboot_application_name == ''
 
-- name: "Check for required inventory springboot_application_name variable"
+- name: "Check for required inventory springboot_src_file or springboot_src_url variable"
   fail:
     msg: springboot_src variable is required and should be defined in you inventory
-  when: not springboot_src or springboot_src == ''
+  when: (not springboot_src_file or springboot_src_file == '') and (not springboot_src_url or springboot_src_url == '')
 
 - name: os-specific vars
   include_vars: "{{ansible_os_family}}.yml"
