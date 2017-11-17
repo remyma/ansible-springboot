@@ -36,11 +36,22 @@
 
 - name: "Copy jar application"
   copy:
-    src: "{{ springboot_src }}"
+    src: "{{ springboot_src_file }}"
     dest: "{{ springboot_deploy_folder }}/{{ springboot_application_name }}.jar"
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
     mode: "u+x"
+  when: springboot_src_file is defined
+
+- name: "Download springboot application"
+  get_url:
+    url: "{{ springboot_src_url }}"
+    dest: "{{ springboot_deploy_folder }}/{{ springboot_application_name }}.jar"
+    owner: "{{ springboot_user }}"
+    group: "{{ springboot_group }}"
+    mode: 0644
+    mode: "u+x"
+  when: springboot_src_url is defined
 
 - name: "Deploy app properties"
   template:
