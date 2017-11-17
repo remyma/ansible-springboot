@@ -13,6 +13,7 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-instal
 
 | Variable     | Default       | Description    |
 | ------------ | ------------- | -------------- |
+| springboot_java_install | true | If you want this role to install java. Use false if java is already installed |
 | springboot_src |  | Mandatory. Path of the springboot jar to deploy |
 | springboot_application_name |  | Mandatory. Spring application name. Use to name jar to be deployed, systemd service, ... |
 | springboot_propertyfile_template | | Optional. Path towards a template to manage your app properties (eg : application.properties, application.yml).  |

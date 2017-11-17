@@ -14,6 +14,7 @@
 
 - name: "Install java"
   include: java.yml
+  when: springboot_java_install == true
 
 - name: "Create group for springboot app"
   group:

@@ -1,4 +1,7 @@
 ---
+# Install java by default. Optional
+springboot_java_install: true
+
 # Mandatory variable : path to springboot jar to deploy
 springboot_src:
 
