@@ -41,7 +41,7 @@
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
     mode: "u+x"
-  when: springboot_src_file is defined
+  when: springboot_src_file is defined and springboot_src_file != ''
 
 - name: "Download springboot application"
   get_url:
@@ -51,7 +51,7 @@
     group: "{{ springboot_group }}"
     mode: 0644
     mode: "u+x"
-  when: springboot_src_url is defined
+  when: springboot_src_url is defined and springboot_src_url != ''
 
 - name: "Deploy app properties"
   template:
