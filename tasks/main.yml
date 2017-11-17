@@ -6,7 +6,7 @@
 
 - name: "Check for required inventory springboot_src_file or springboot_src_url variable"
   fail:
-    msg: springboot_src variable is required and should be defined in you inventory
+    msg: springboot_src variable or springboot_src_url is required and should be defined in you inventory
   when: (not springboot_src_file or springboot_src_file == '') and (not springboot_src_url or springboot_src_url == '')
 
 - name: os-specific vars
@@ -41,7 +41,7 @@
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
     mode: "u+x"
-  when: springboot_src_file is defined and springboot_src_file != ''
+  when: springboot_src_file is defined and springboot_src_file|length > 0
 
 - name: "Download springboot application"
   get_url:
@@ -49,9 +49,8 @@
     dest: "{{ springboot_deploy_folder }}/{{ springboot_application_name }}.jar"
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
-    mode: 0644
     mode: "u+x"
-  when: springboot_src_url is defined and springboot_src_url != ''
+  when: springboot_src_url is defined and springboot_src_url|length > 0
 
 - name: "Deploy app properties"
   template:
