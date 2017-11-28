@@ -42,6 +42,8 @@
     group: "{{ springboot_group }}"
     mode: "u+x"
   when: springboot_src_file is defined and springboot_src_file|length > 0
+  notify:
+    - "Restart application"
 
 - name: "Download springboot application"
   get_url:
@@ -51,6 +53,8 @@
     group: "{{ springboot_group }}"
     mode: "u+x"
   when: springboot_src_url is defined and springboot_src_url|length > 0
+  notify:
+    - "Restart application"
 
 - name: "Deploy app properties"
   template:
@@ -59,6 +63,8 @@
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
   when: springboot_propertyfile_template and springboot_propertyfile_template != ''
+  notify:
+    - "Restart application"
 
 - name: "Deploy app config"
   template:
@@ -67,6 +73,8 @@
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
   when: springboot_configuration_template and springboot_configuration_template != ''
+  notify:
+    - "Restart application"
 
 - name: Install as service
   include: service.yml
