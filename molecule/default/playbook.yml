@@ -6,6 +6,7 @@
     - springboot_configuration_template: tests/spring-boot-sample.conf
     - springboot_propertyfile_template: tests/application.yml
     - springboot_application_name: 'spring-boot-sample'
+    - log_folder: "/opt/spring-boot-sample"
   roles:
     - role: geerlingguy.java
       when: "ansible_os_family == 'RedHat'"
