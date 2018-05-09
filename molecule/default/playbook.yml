@@ -1,9 +1,14 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    - springboot_src_file: tests/spring-boot-sample.jar
+    - springboot_configuration_template: tests/spring-boot-sample.conf
+    - springboot_propertyfile_template: tests/application.yml
+    - springboot_application_name: 'spring-boot-sample'
   roles:
     - role: geerlingguy.java
       when: "ansible_os_family == 'RedHat'"
       java_packages:
         - java-1.8.0-openjdk
-    - role: ansible-artemis
+    - role: ansible-springboot

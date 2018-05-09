@@ -1,12 +1,19 @@
-import os
-
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
-    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
+    '.molecule/ansible_inventory').get_hosts('all')
 
 
-def test_artemis_running(Service):
-    artemis = Service("artemis-broker")
-    assert artemis.is_enabled
-    assert artemis.is_running
+def test_application_running(Service):
+    application = Service("spring-boot-sample")
+    assert application.is_enabled
+
+
+def test_application_properties_exists(File):
+    propertyFile = File("/opt/spring-boot-sample/application.yml")
+    assert propertyFile.exists
+
+
+def test_application_conf_exists(File):
+    configFile = File("/opt/spring-boot-sample/spring-boot-sample.conf")
+    assert configFile.exists
