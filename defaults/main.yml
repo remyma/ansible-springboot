@@ -15,7 +15,6 @@ springboot_application_name:
 springboot_propertyfile_template:
 
 # Optional : you can specify a template file to manage you app configuration
-# (see : https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html#deployment-script-customization-when-it-runs)
 springboot_configuration_template:
 
 # Deploy folder

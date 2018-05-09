@@ -8,7 +8,7 @@ lint:
 platforms:
   - name: instance
     image: centos:7
-    privileged: True
+    privileged: 'true'
     command: '/sbin/init'
     cap_add: ['SYS_ADMIN', 'SETPCAP']
 provisioner:
