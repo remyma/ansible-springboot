@@ -1,3 +1,4 @@
 .cache
 .molecule
 tests/__pycache__/
+.idea

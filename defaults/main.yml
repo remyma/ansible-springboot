@@ -3,7 +3,8 @@
 springboot_java_install: true
 
 # Mandatory variable : path to springboot jar to deploy.
-# Either specify a file or a url depending on if you want to copy you app or download it.
+# Either specify a file or a url depending
+# on if you want to copy you app or download it.
 springboot_src_file:
 springboot_src_url:
 
