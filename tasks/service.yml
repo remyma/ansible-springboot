@@ -19,3 +19,12 @@
   when: use_system_d
   notify:
     - "Restart application"
+
+- name: "Ensure application started"
+  systemd:
+    name: "{{ springboot_application_name }}"
+    enabled: yes
+    daemon-reload: yes
+    state: restarted
+  when: use_system_d
+
