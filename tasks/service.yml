@@ -27,4 +27,3 @@
     daemon-reload: yes
     state: restarted
   when: use_system_d
-
