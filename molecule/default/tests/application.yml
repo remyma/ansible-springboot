@@ -1,4 +1,4 @@
 ---
 spring:
   application:
-    name: "{{ springboot_application_name }}"
+    name: {{ springboot_application_name }}

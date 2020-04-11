@@ -2,19 +2,19 @@
 - name: "Check for required inventory springboot_application_name variable"
   fail:
     msg: springboot_application_name variable is required and should be defined in you inventory
-  when: not springboot_application_name or springboot_application_name == ''
+  when: not springboot_application_name
 
 - name: "Check for required inventory springboot_src_file or springboot_src_url variable"
   fail:
     msg: springboot_src variable or springboot_src_url is required and should be defined in you inventory
-  when: (not springboot_src_file or springboot_src_file == '') and (not springboot_src_url or springboot_src_url == '')
+  when: (not springboot_src_file) and (not springboot_src_url)
 
 - name: os-specific vars
-  include_vars: "{{ansible_os_family}}.yml"
+  include_vars: "{{ ansible_os_family }}.yml"
 
 - name: "Install java"
   include: java.yml
-  when: springboot_java_install == true
+  when: springboot_java_install
 
 - name: "Create group for springboot app"
   group:
@@ -62,7 +62,7 @@
     dest: "{{ springboot_deploy_folder }}"
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
-  when: springboot_propertyfile_template and springboot_propertyfile_template != ''
+  when: springboot_propertyfile_template
   notify:
     - "Restart application"
 
@@ -72,7 +72,7 @@
     dest: "{{ springboot_deploy_folder }}"
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
-  when: springboot_configuration_template and springboot_configuration_template != ''
+  when: springboot_configuration_template
   notify:
     - "Restart application"
 
