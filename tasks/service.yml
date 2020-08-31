@@ -11,6 +11,7 @@
     state: directory
     owner: root
     group: root
+  when: springboot_service_install == true
 
 - name: "Create systemd service file"
   template:
@@ -19,6 +20,6 @@
     mode: 0644
     owner: "{{ springboot_user }}"
     group: "{{ springboot_group }}"
-  when: use_system_d
+  when: use_system_d and springboot_service_install == true
   notify:
     - "Restart application"

@@ -5,4 +5,4 @@
     enabled: yes
     daemon-reload: yes
     state: restarted
-  when: use_system_d
+  when: use_system_d and springboot_service_install == true
